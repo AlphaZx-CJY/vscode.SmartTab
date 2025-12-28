@@ -1,0 +1,112 @@
+{
+  "name": "smarttab",
+  "displayName": "SmartTab",
+  "description": "Smart tab out of quotes, brackets, etc.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.54.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:tabout"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "SmartTab",
+      "properties": {
+        "smarttab.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable SmartTab"
+        },
+        "smarttab.pairCharacters": {
+          "type": "array",
+          "default": [
+            {
+              "close": "\""
+            },
+            {
+              "close": "'"
+            },
+            {
+              "close": "`"
+            },
+            {
+              "close": ")"
+            },
+            {
+              "close": "]"
+            },
+            {
+              "close": "}"
+            },
+            {
+              "close": ">"
+            },
+            {
+              "close": ","
+            },
+            {
+              "close": "."
+            },
+            {
+              "close": ":"
+            },
+            {
+              "close": ";"
+            }
+          ],
+          "description": "Characters considered as pairs for SmartTab functionality",
+          "items": {
+            "type": "object",
+            "required": [
+              "close"
+            ],
+            "properties": {
+              "close": {
+                "type": "string",
+                "description": "Closing character of the pair"
+              }
+            }
+          }
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "toggle",
+        "title": "Toggle SmartTab in workspace",
+        "category": "SmartTab"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "tab",
+        "command": "tabout",
+        "when": "editorTextFocus && !suggestWidgetVisible && !inSnippetMode && !inlineSuggestionVisible && !editorHasMultipleSelections"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.107.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
