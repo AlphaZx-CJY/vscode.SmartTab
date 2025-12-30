@@ -3,7 +3,7 @@
   "displayName": "SmartTab",
   "description": "Smart tab out of quotes, brackets, etc.",
   "version": "1.0.0",
-  "publisher": "congjie",
+  "publisher": "congjiye",
   "repository": {
     "type": "git",
     "url": "https://github.com/AlphaZx-CJY/SmartTab-vscode-extension.git"
