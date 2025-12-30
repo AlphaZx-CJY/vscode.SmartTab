@@ -2,7 +2,13 @@
   "name": "smarttab",
   "displayName": "SmartTab",
   "description": "Smart tab out of quotes, brackets, etc.",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "publisher": "congjie",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlphaZx-CJY/SmartTab-vscode-extension.git"
+  },
+  "icon": "icons/logo.png",
   "engines": {
     "vscode": "^1.54.0"
   },
@@ -97,16 +103,18 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "deploy": "vsce publish"
   },
   "devDependencies": {
-    "@types/vscode": "^1.107.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.48.1",
+    "@types/vscode": "^1.54.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.7.1",
     "eslint": "^9.39.1",
     "typescript": "^5.9.3",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "typescript-eslint": "^8.48.1"
   }
 }

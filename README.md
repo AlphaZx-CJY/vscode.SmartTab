@@ -1,71 +1,90 @@
-# smarttab README
+# smarttab
 
-This is the README for your extension "smarttab". After writing up a brief description, we recommend including the following sections.
+SmartTab is a lightweight Visual Studio Code extension. Main behavior:
 
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+- Pressing Tab jumps out of the current bracket or quote (e.g., parentheses, brackets, braces, or quotes) when the caret is immediately before the closing character.
 
 ---
 
-## Following extension guidelines
+**Main behavior**
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+When the cursor is directly before a configured closing character (for example `)` or `"`), pressing `Tab` moves the cursor after that character instead of inserting a tab character.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+**Features**
 
-## Working with Markdown
+- Jump out of parentheses, brackets, braces and quotes using Tab.
+- Configurable list of closing characters.
+- Command: `tabout` (activation). Tab is bound to `tabout` by default in typical editor focus conditions (see `package.json`).
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+**Development / Install**
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+Install dependencies:
 
-## For more information
+```powershell
+npm install
+```
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Run in watch mode for development:
 
-**Enjoy!**
+```powershell
+npm run watch
+```
+
+Press `F5` in VS Code to open the extension development host.
+
+**Usage**
+
+After installing the extension, when the caret is immediately before a configured closing character (for example `)` or `"`), pressing `Tab` will move the caret after that character. This reduces manual cursor movement when typing paired characters.
+
+**Settings**
+
+Configuration is declared in `package.json` under `contributes.configuration`. Current keys (name, type, default):
+
+- `smarttab.enable` (boolean, default `true`) — Enable or disable SmartTab.
+- `smarttab.pairCharacters` (array of objects) — Characters treated as closing/pair boundaries. Each item is an object with a `close` string property.
+
+Default values (from `package.json`):
+
+```json
+{
+    "smarttab.enable": true,
+    "smarttab.pairCharacters": [
+        { "close": "\"" },
+        { "close": "'" },
+        { "close": "`" },
+        { "close": ")" },
+        { "close": "]" },
+        { "close": "}" },
+        { "close": ">" },
+        { "close": "," },
+        { "close": "." },
+        { "close": ":" },
+        { "close": ";" }
+    ]
+}
+```
+
+Example `settings.json` snippet:
+
+```json
+{
+    "smarttab.enable": false,
+    "smarttab.pairCharacters": [
+        { "close": ")" },
+        { "close": "," }
+    ]
+}
+```
+
+**Commands & Keybindings**
+
+- `tabout` — Primary command used by the extension; Tab is bound to it via the extension keybinding when the editor conditions match.
+- `toggle` — Toggle SmartTab in workspace (declared in `package.json`).
+
+**Contributing**
+
+PRs and issues are welcome. When submitting a PR, follow the repository style, include tests if applicable, and describe changes in the PR.
+
+**Release Notes**
+
+- `1.0.0` — Initial release.
