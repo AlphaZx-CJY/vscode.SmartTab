@@ -2,7 +2,7 @@
   "name": "smarttab",
   "displayName": "SmartTab",
   "description": "Smart tab out of quotes, brackets, etc.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "congjiye",
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:tabout"
+    "onLanguage"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -29,55 +29,26 @@
           "default": true,
           "description": "Enable SmartTab"
         },
-        "smarttab.pairCharacters": {
+        "smarttab.skipSymbols": {
           "type": "array",
           "default": [
-            {
-              "close": "\""
-            },
-            {
-              "close": "'"
-            },
-            {
-              "close": "`"
-            },
-            {
-              "close": ")"
-            },
-            {
-              "close": "]"
-            },
-            {
-              "close": "}"
-            },
-            {
-              "close": ">"
-            },
-            {
-              "close": ","
-            },
-            {
-              "close": "."
-            },
-            {
-              "close": ":"
-            },
-            {
-              "close": ";"
-            }
+            "\"",
+            "'",
+            "`",
+            ")",
+            "]",
+            "}",
+            ">",
+            ",",
+            ".",
+            ":",
+            ";"
           ],
-          "description": "Characters considered as pairs for SmartTab functionality",
+          "description": "Characters that SmartTab will skip over when pressing Tab.",
           "items": {
-            "type": "object",
-            "required": [
-              "close"
-            ],
-            "properties": {
-              "close": {
-                "type": "string",
-                "description": "Closing character of the pair"
-              }
-            }
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1
           }
         }
       }
